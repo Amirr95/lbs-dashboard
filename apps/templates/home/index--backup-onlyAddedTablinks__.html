@@ -485,7 +485,7 @@
           <polygon points="410.01 601.42 358.8 778.44 320.06 767.07 372.92 591.6 410.01 601.42" class="map__space" />
           <polygon points="561.3,603.9 624,777 661.9,763.2 597.7,591.5" class="map__space" />
         </svg>
-        <div class="level__AreaPins">
+        <div class="level__pins">
           <a class="pin pin--1-1" data-category="1" data-space="1.01" href="#" aria-label="Pin for Apple Heart">
             <span class="pin__icon">
               <svg class="iconMall iconMall--pin">
@@ -578,7 +578,7 @@
             </span>
           </a>
         </div>
-        <!-- /level__AreaPins -->
+        <!-- /level__pins -->
       </div>
       <div class="level level--2" aria-label="Level 2">
         <svg class="map map--2" viewBox="0 0 1200 800" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
@@ -617,7 +617,7 @@
           <rect data-space="2.08" x="855.37" y="423.16" width="180.58" height="364.25" class="map__space" />
           <polygon points="627.81 787.41 716.09 787.41 716.09 646.58 576.88 646.58 627.81 787.41" class="map__space" />
         </svg>
-        <div class="level__AreaPins">
+        <div class="level__pins">
           <a class="pin pin--2-1" data-category="1" data-space="2.01" href="#" aria-label="Pin for Grilled Chipotle">
             <span class="pin__icon">
               <svg class="iconMall iconMall--pin">
@@ -699,7 +699,7 @@
             </span>
           </a>
         </div>
-        <!-- /level__AreaPins -->
+        <!-- /level__pins -->
       </div>
       <div class="level level--3" aria-label="Level 3">
         <svg class="map map--3" viewBox="0 0 1200 800" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
@@ -732,7 +732,7 @@
           <polygon data-space="3.05" points="356.2,787.4 414.9,584.4 275.1,584.4 275.1,787.4 " class="map__space" />
           <rect data-space="3.01" x="49.4" y="12.6" width="312.7" height="343" class="map__space" />
         </svg>
-        <div class="level__AreaPins">
+        <div class="level__pins">
           <a class="pin pin--3-1" data-category="1" data-space="3.01" href="#" aria-label="Pin for Oolong House">
             <span class="pin__icon">
               <svg class="iconMall iconMall--pin">
@@ -804,7 +804,7 @@
             </span>
           </a>
         </div>
-        <!-- /level__AreaPins -->
+        <!-- /level__pins -->
       </div>
       <div class="level level--4" aria-label="Level 4">
         <svg class="map map--4" viewBox="0 0 1200 800" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
@@ -842,7 +842,7 @@
           <rect data-space="4.04" x="855.4" y="423.2" width="180.6" height="364.2" class="map__space" />
           <polygon points="613.2,747 846.6,658.6 846.6,787.4 627.8,787.4" class="map__space" />
         </svg>
-        <div class="level__AreaPins">
+        <div class="level__pins">
           <a class="pin pin--4-1" data-category="1" data-space="4.01" href="#" aria-label="Pin for Cold Soup Kitchen">
             <span class="pin__icon">
               <svg class="iconMall iconMall--pin">
@@ -914,43 +914,7 @@
             </span>
           </a>
         </div>
-        <!-- /level__AreaPins -->
-
-        <!-- level__peoplePins -->
-        <div class="level__PeoplePins">
-          <a class="pin pin--4-11" data-category="2" data-space="4.01" href="#" aria-label="Test Pin ">
-            <span class="pin__icon">
-              <svg class="iconMall iconMall--pin">
-                <use xlink:href="#icon-pin"></use>
-              </svg>
-              <svg class="iconMall iconMall--logo icon--tomato">
-                <use xlink:href="#icon-tomato"></use>
-              </svg>
-            </span>
-          </a>
-          <a class="pin pin--4-12" data-category="2" data-space="4.02" href="#" aria-label="Test Pin ">
-            <span class="pin__icon">
-              <svg class="iconMall iconMall--pin">
-                <use xlink:href="#icon-pin"></use>
-              </svg>
-              <svg class="iconMall iconMall--logo icon--cinema">
-                <use xlink:href="#icon-cinema"></use>
-              </svg>
-            </span>
-          </a>
-          <a class="pin pin--4-13" data-category="2" data-space="4.03" href="#" aria-label="Test Pin ">
-            <span class="pin__icon">
-              <svg class="iconMall iconMall--pin">
-                <use xlink:href="#icon-pin"></use>
-              </svg>
-              <svg class="iconMall iconMall--logo icon--paint-brush">
-                <use xlink:href="#icon-paint-brush"></use>
-              </svg>
-            </span>
-          </a>
-        </div>
-        <!-- /level__peoplePins  -->
-
+        <!-- /level__pins -->
       </div>
     </div>
     <!-- /levels -->
@@ -970,15 +934,15 @@
     <button class="boxbutton mallnav__button--down" aria-label="Go down"><svg class="iconMall iconMall--angle-down">
         <use xlink:href="#icon-angle-down"></use>
       </svg></button>
-    <button class="boxbutton tablinks tablinks__area " aria-label="Open Tab1" onclick="openTabOnLoad(event, 'area')"
+    <button class="boxbutton tablinks tablinks__area" aria-label="Open Tab1" onclick="openTab(event, 'London')"
       id="defaultOpen"><svg class="iconMall iconMall--location">
         <use xlink:href="#icon-location"></use>
       </svg></button>
-    <button class="boxbutton tablinks tablinks__people" id="peopleLink" aria-label="Open Tab2" ><svg
+    <button class="boxbutton tablinks tablinks__people" aria-label="Open Tab2" onclick="openTab(event, 'Paris')"><svg
         class="iconMall iconMall--people">
         <use xlink:href="#icon-people"></use>
       </svg></button>
-    <button class="boxbutton tablinks tablinks__sensor" aria-label="Open Tab3" ><svg 
+    <button class="boxbutton tablinks tablinks__sensor" aria-label="Open Tab3" onclick="openTab(event, 'Barcelona')"><svg 
       class="iconMall iconMall--sensor">
         <use xlink:href="#icon-sensor"></use>
       </svg></button>
@@ -1381,7 +1345,7 @@
 
   <!-- /main -->
   <aside class="spaces-list" id="spaces-list">
-    <div id="area" class="tabcontent">
+    <div id="London" class="tabcontent">
       <div class="search">
         <input class="search__input" placeholder="جستجو..." />
         <button class="boxbutton boxbutton--darker close-search" aria-label="Close details"><svg
@@ -1465,29 +1429,12 @@
       </ul>
     </div>
 
-    <div id="people" class="tabcontent">
-      <div class="search">
-        <input class="search__input" placeholder="جستجو..." />
-        <button class="boxbutton boxbutton--darker close-search" aria-label="Close details"><svg
-            class="iconMall iconMall--cross">
-            <use xlink:href="#icon-cross"></use>
-          </svg></button>
-      </div>
-      <span class="label">
-        <input id="sort-by-name" class="label__checkbox" type="checkbox" aria-label="Show alphabetically" />
-        <label class="label__text">الف-ی</label>
-      </span>
-      <ul class="peopleList grouped-by-category">
-        <li class="list__item" data-level="4" data-category="2" data-space="4.01"><a href="#" class="list__link">The
-            Wizard</a></li>
-        <li class="list__item" data-level="4" data-category="2" data-space="4.02"><a href="#" class="list__link">Apple
-            Heart</a></li>
-        <li class="list__item" data-level="4" data-category="2" data-space="4.03"><a href="#" class="list__link">Crazy
-            Banana</a></li>
-      </ul>
+    <div id="Paris" class="tabcontent">
+      <h3>Paris</h3>
+      <p>Paris is the capital of France.</p>
     </div>
 
-    <div id="sensor" class="tabcontent">
+    <div id="Barcelona" class="tabcontent">
       <h3>Barcelona</h3>
       <p>Barcelona is the capital of Catalunya.</p>
     </div>
@@ -1580,10 +1527,10 @@
 {% block javascripts %}
 <script src="{{ ASSETS_ROOT }}/js/classie.js"></script>
 <script src="{{ ASSETS_ROOT }}/js/list.min.js"></script>
-<script src="{{ ASSETS_ROOT }}/js/main-floorplan2.js"></script>
+<script src="{{ ASSETS_ROOT }}/js/main-floorplan.js"></script>
 <script src="{{ ASSETS_ROOT }}/js/plugins/chartjs.min.js"></script>
 <script>
-  function openTabOnLoad(evt, cityName) {
+  function openTab(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -1597,7 +1544,6 @@
     evt.currentTarget.className += " active boxbutton--dark";
   }
   document.getElementById("defaultOpen").click();
-
 </script>
 
 {% endblock javascripts %}
