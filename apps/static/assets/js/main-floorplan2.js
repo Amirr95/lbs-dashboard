@@ -66,10 +66,10 @@
 		levelUpCtrl = mallNav.querySelector('.mallnav__button--up'),
 		levelDownCtrl = mallNav.querySelector('.mallnav__button--down'),
 
-        areaTab = mallNav.querySelector('.tablinks__area'),
-        peopleTab = mallNav.querySelector('.tablinks__people'),
-        sensorTab = mallNav.querySelector('.tablinks__sensor'),
-        
+		areaTab = mallNav.querySelector('.tablinks__area'),
+		peopleTab = mallNav.querySelector('.tablinks__people'),
+		sensorTab = mallNav.querySelector('.tablinks__sensor'),
+
 		// pins
 		pins = [].slice.call(mallLevelsEl.querySelectorAll('.pin')),
 		// content element
@@ -95,23 +95,24 @@
 		// listjs initiliazation (all mall´s spaces)
 		spacesList = new List('spaces-list', { valueNames: ['list__link', { data: ['level'] }, { data: ['category'] }] }),
 
-        /* -------------------------------------------------------------------------- */
-        /*                              Start people list                             */
-        /* -------------------------------------------------------------------------- */
-        // spaces list element
-        peopleListEl = document.getElementById('spaces-list'),
-        // spaces list ul
-        peopleEl = peopleListEl.querySelector('ul.peopleList'),
-        // all the people listed
-        peoples = [].slice.call(peopleEl.querySelectorAll('.list__item > a.list__link')),
-        // reference to the current shows space (name set in the data-name attr of both the listed people and the pins on the map)
-        // listjs initiliazation (all mall´s people)
-        peopleList = new List('people-list', { valueNames: ['list__link', { data: ['level'] }, { data: ['category'] }] }),
-        /* -------------------------------------------------------------------------- */
-        /*                             End of people list                             */
-        /* -------------------------------------------------------------------------- */
+		/* -------------------------------------------------------------------------- */
+		/*                              Start people list                             */
+		/* -------------------------------------------------------------------------- */
+		// spaces list element
+		peopleListEl = document.getElementById('spaces-list'),
+		// spaces list ul
+		peopleEl = peopleListEl.querySelector('ul.peopleList'),
+		// all the people listed
+		peoples = [].slice.call(peopleEl.querySelectorAll('.list__item > a.list__link')),
+		isOpenPeoplePin,
+		// reference to the current shows space (name set in the data-name attr of both the listed people and the pins on the map)
+		// listjs initiliazation (all mall´s people)
+		peopleList = new List('people-list', { valueNames: ['list__link', { data: ['level'] }, { data: ['category'] }] }),
+		/* -------------------------------------------------------------------------- */
+		/*                             End of people list                             */
+		/* -------------------------------------------------------------------------- */
 
-        
+
 		// smaller screens:
 		// open search ctrl
 		openSearchCtrl = document.querySelector('button.open-search'),
@@ -147,11 +148,11 @@
 		levelUpCtrl.addEventListener('click', function () { navigate('Down'); });
 		levelDownCtrl.addEventListener('click', function () { navigate('Up'); });
 
-        // navigating through the tabs
-        areaTab.addEventListener('click', function() { OpenTab('area'); })
-        peopleTab.addEventListener('click', function() { OpenTab('people'); })
-        sensorTab.addEventListener('click', function() { OpenTab('sensor'); })
-        
+		// navigating through the tabs
+		areaTab.addEventListener('click', function () { OpenTab('area'); })
+		peopleTab.addEventListener('click', function () { OpenTab('people'); })
+		sensorTab.addEventListener('click', function () { OpenTab('sensor'); })
+
 		// sort by name ctrl - add/remove category name (css pseudo element) from list and sorts the spaces by name 
 		sortByNameCtrl.addEventListener('click', function () {
 			if (this.checked) {
@@ -209,9 +210,9 @@
 			});
 		});
 
-        /* -------------------------------------------------------------------------- */
-        /*                 what happens to people listed when clicked                 */
-        /* -------------------------------------------------------------------------- */
+		/* -------------------------------------------------------------------------- */
+		/*                 what happens to people listed when clicked                 */
+		/* -------------------------------------------------------------------------- */
 		peoples.forEach(function (person) {
 			var personItem = person.parentNode,
 				level = personItem.getAttribute('data-level'),
@@ -224,14 +225,18 @@
 				// open level
 				showLevel(level);
 				// open content for this space
-				testFunc();
+				// var blinkEl = mallLevelsEl.querySelector('.pin[data-space="' + spacerefval + '"]');
+				// if (blinkEl.classList.contains('pin--blink')) {
+				// 	blinkEl.classList.remove('pin--blink');
+				// }
+				testFunc(spacerefval);
 			});
 		});
 
 
-        /* -------------------------------------------------------------------------- */
-        /*                             End people list                                */
-        /* -------------------------------------------------------------------------- */
+		/* -------------------------------------------------------------------------- */
+		/*                             End people list                                */
+		/* -------------------------------------------------------------------------- */
 
 		// smaller screens: open the search bar
 		openSearchCtrl.addEventListener('click', function () {
@@ -244,20 +249,34 @@
 		});
 	}
 
-    function testFunc(spacerefval) {
-        // remove class active (if any) from current list item
-		var activeItem = peopleEl.querySelector('li.list__item--blink');
+	function testFunc(spacerefval) {
+		var blinkEl = mallLevelsEl.querySelector('.pin[data-space="' + spacerefval + '"]');
+		const blinkClass = blinkEl.classList;
+		// if (blinkClass.contains('pin--blink')) {
+		// 	blinkClass.toggle('pin--blink');
+		// }
+		var activeItem = peopleEl.querySelector('li.list__item--active');
 		if (activeItem) {
-			classie.remove(activeItem, 'list__item--blink');
+			classie.remove(activeItem, 'list__item--active');
 		}
 		// list item gets class active (if the list item is currently shown in the list)
-		var listItem = peopleEl.querySelector('li[data-space="' + spacerefval + '"]')
+		var listItem = peopleEl.querySelector('li[data-space="' + spacerefval + '"]');
 		if (listItem) {
-			classie.add(listItem, 'list__item--blink');
+			classie.add(listItem, 'list__item--active');
 		}
-        var spaceref = spacerefval
-        classie.add(mallLevelsEl.querySelector('.pin[data-space="' + spaceref + '"]'), 'pin--blink')
-    }
+		blinkClass.toggle('pin--blink');
+		// blinkEl.classList.add('pin--blink');
+
+
+	}
+	function showPeoplePin(spacerefval) {
+		classie.add(mallLevelsEl.querySelector('.pin[data-space="' + spacerefval + '"]'), 'pin--blink');
+	}
+
+	function hidePeoplePin(spacerefval) {
+		classie.remove(mallLevelsEl.querySelector('.pin[data-space="' + spacerefval + '"]'), 'pin--active');
+	}
+
 	/**
 	 * Opens a level. The current level moves to the center while the other ones move away.
 	 */
@@ -345,7 +364,7 @@
 		classie.add(levelEl.querySelector('.level__AreaPins'), 'level__AreaPins--active');
 	}
 
-    function showPeoplePins(levelEl) {
+	function showPeoplePins(levelEl) {
 		var levelEl = levelEl || mallLevels[selectedLevel - 1];
 		classie.add(levelEl.querySelector('.level__PeoplePins'), 'level__PeoplePins--active');
 	}
@@ -358,7 +377,7 @@
 		classie.remove(levelEl.querySelector('.level__AreaPins'), 'level__AreaPins--active');
 	}
 
-    function removePeoplePins(levelEl) {
+	function removePeoplePins(levelEl) {
 		var levelEl = levelEl || mallLevels[selectedLevel - 1];
 		classie.remove(levelEl.querySelector('.level__PeoplePins'), 'level__PeoplePins--active');
 	}
@@ -451,47 +470,47 @@
 		removeAreaPins(currentLevel);
 	}
 
-    /**
-     * Navigate through tabs
-     */
-    function OpenTab(tabName) {
-        
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active boxbutton--dark", "");
-        }
-        document.getElementById(tabName).style.display = "block";
-        if (tabName === 'area') {
-            removePeoplePins()
-            showAreaPins()
-            document.getElementById('defaultOpen').className += " active boxbutton--dark";
-        }
-        else if (tabName === 'people') {
-            removeAreaPins()
-            showPeoplePins()
-            document.getElementById('peopleLink').className += " active boxbutton--dark";
-        }
+	/**
+	 * Navigate through tabs
+	 */
+	function OpenTab(tabName) {
 
-        // if (tabName === 'area') {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active boxbutton--dark", "");
+		}
+		document.getElementById(tabName).style.display = "block";
+		if (tabName === 'area') {
+			removePeoplePins()
+			showAreaPins()
+			document.getElementById('defaultOpen').className += " active boxbutton--dark";
+		}
+		else if (tabName === 'people') {
+			removeAreaPins()
+			showPeoplePins()
+			document.getElementById('peopleLink').className += " active boxbutton--dark";
+		}
+
+		// if (tabName === 'area') {
 		// 	var i, tabcontent, tablinks;
-        //     tabcontent = document.getElementsByClassName("tabcontent");
-        //     for (i = 0; i < tabcontent.length; i++) {
-        //         tabcontent[i].style.display = "none";
-        //     }
-        //     tablinks = document.getElementsByClassName("tablinks");
-        //     for (i = 0; i < tablinks.length; i++) {
-        //         tablinks[i].className = tablinks[i].className.replace(" active boxbutton--dark", "");
-        //     }
-        //     document.getElementById(tabName).style.display = "block";
-        //     evt.currentTarget.className += " active boxbutton--dark";
+		//     tabcontent = document.getElementsByClassName("tabcontent");
+		//     for (i = 0; i < tabcontent.length; i++) {
+		//         tabcontent[i].style.display = "none";
+		//     }
+		//     tablinks = document.getElementsByClassName("tablinks");
+		//     for (i = 0; i < tablinks.length; i++) {
+		//         tablinks[i].className = tablinks[i].className.replace(" active boxbutton--dark", "");
+		//     }
+		//     document.getElementById(tabName).style.display = "block";
+		//     evt.currentTarget.className += " active boxbutton--dark";
 		// }
 
-    }
+	}
 
 	/**
 	 * Control navigation ctrls state. Add disable class to the respective ctrl when the current level is either the first or the last.
