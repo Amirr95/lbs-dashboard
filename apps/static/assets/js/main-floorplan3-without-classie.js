@@ -48,6 +48,8 @@
         },
         // the mall element
         mall = document.querySelector('.mall'),
+        circles = document.getElementsByClassName('sensors'),
+        hist = document.getElementsByClassName('locHistory'),
         // mall´s levels wrapper
         mallLevelsEl = mall.querySelector('.levels'),
         // mall´s levels
@@ -68,6 +70,7 @@
 
         areaTab = mallNav.querySelector('.tablinks__area'),
         peopleTab = mallNav.querySelector('.tablinks__people'),
+        historyTab = mallNav.querySelector('.tablinks__history'),
         sensorTab = mallNav.querySelector('.tablinks__sensor'),
 
         // pins
@@ -94,6 +97,7 @@
         spaceref,
         // sort by ctrls
         sortByNameCtrl = document.querySelector('#sort-by-name'),
+        sortByNameCtrl2 = document.querySelector('#sort-by-name2'),
         // listjs initiliazation (all mall´s spaces)
         spacesList = new List('spaces-list', { valueNames: ['list__link', { data: ['level'] }, { data: ['category'] }] }),
 
@@ -132,6 +136,7 @@
      * Initialize/Bind events fn.
      */
     function initEvents() {
+        hideTemp();
         // click on a Mall´s level
         mallLevels.forEach(function (level, pos) {
             level.addEventListener('click', function () {
@@ -152,7 +157,8 @@
 
         // navigating through the tabs
         areaTab.addEventListener('click', function () { OpenTab('area'); })
-        peopleTab.addEventListener('click', function () { OpenTab('people'); })
+        peopleTab.addEventListener('click', function () { OpenTab('people', selectedLevel); })
+        historyTab.addEventListener('click', function () { OpenTab('history'); })
         sensorTab.addEventListener('click', function () { OpenTab('sensor'); })
 
         // sort by name ctrl - add/remove category name (css pseudo element) from list and sorts the spaces by name 
@@ -163,6 +169,16 @@
             }
             else {
                 classie.add(spacesEl, 'grouped-by-category');
+                spacesList.sort('category');
+            }
+        });
+        sortByNameCtrl2.addEventListener('click', function () {
+            if (this.checked) {
+                classie.remove(peopleEl, 'grouped-by-category');
+                spacesList.sort('list__link');
+            }
+            else {
+                classie.add(peopleEl, 'grouped-by-category');
                 spacesList.sort('category');
             }
         });
@@ -267,6 +283,7 @@
 
 
     }
+    
     function showPeoplePin(spacerefval) {
         classie.add(mallLevelsEl.querySelector('.pin[data-space="' + spacerefval + '"]'), 'pin--blink');
     }
@@ -285,7 +302,7 @@
 
         // update selected level val
         selectedLevel = level;
-
+        document.getElementById('defaultOpen').className += " active boxbutton--dark";
         // control navigation controls state
         setNavigationState();
 
@@ -322,23 +339,25 @@
             return false;
         }
         isExpanded = false;
-
+        document.getElementById('spaces-list').style.visibility = 'visible';
+        OpenTab("area");
         classie.remove(mallLevels[selectedLevel - 1], 'level--current');
         classie.remove(mallLevelsEl, 'levels--selected-' + selectedLevel);
         classie.remove(mallLevelsEl, 'levels--open');
         // hide level pins
         removeAreaPins();
-
+        hideCircles();
+        removeSensor();
+        hideTemp();
+        hideHistory();
         // shows surrounding element
         showSurroundings();
-
         // hide mall nav ctrls
         hideMallNav();
-
+        removePeoplePins()
         // show back the complete list of spaces
         spacesList.filter();
-        var peoplePinEl = mallLevelsEl.querySelector('.level__PeoplePins');
-        peoplePinEl.classList.remove('level__PeoplePins--active');
+        
         // close content area if it is open
         if (isOpenContentArea) {
             closeContentArea();
@@ -481,13 +500,13 @@
 
         // hide the previous level´s pins
         removeAreaPins(currentLevel);
-        OpenTab('area');
+        OpenTab('area', currentLevel);
     }
 
     /**
      * Navigate through tabs
      */
-    function OpenTab(tabName) {
+    function OpenTab(tabName, level) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
@@ -499,26 +518,70 @@
         }
         document.getElementById(tabName).style.display = "block";
         if (tabName === 'area') {
-            removePeoplePins();
+            removePeoplePins(level);
+            removeSensor(level);
+            hideCircles();
+            hideHistory();
             showAreaPins();
             document.getElementById('defaultOpen').className += " active boxbutton--dark";
+            document.getElementsByClassName('mallnav')[0].style.left = '18rem';
+            document.getElementById('spaces-list').style.visibility = 'visible';
+            hideTemp();
         }
         else if (tabName === 'people') {
-            removeAreaPins();
             showPeoplePins();
-            if (isOpenContentArea2) {
+            removeAreaPins();
+            removeSensor();
+            hideHistory();
+            hideCircles();
+            if (isOpenContentArea) {
                 closeContentArea()
             }
             document.getElementById('peopleLink').className += " active boxbutton--dark";
+            document.getElementsByClassName('mallnav')[0].style.left = '18rem';
+            document.getElementById('spaces-list').style.visibility = 'visible';
+            hideTemp();
+            var people = document.getElementById(tabName),
+                peopleList = people.querySelector('.peopleList'),
+                lists = peopleList.querySelectorAll('.list__item');
+            for (var i = 0; i < lists.length; i++) {
+                if(lists[i].getAttribute("data-level")===level.toString()) {    
+                    lists[i].style.display = "block";}
+                else {
+                    lists[i].style.display = "none";}
+                }
+        }
+        else if (tabName === 'history') {
+            removeAreaPins();
+            removePeoplePins(level);
+            showPeoplePins();
+            showHistory();
+            if (isOpenContentArea) {
+                closeContentArea()
+            }
+            document.getElementById('historyLink').className += " active boxbutton--dark";
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            document.getElementById('spaces-list').style.visibility = 'hidden';
+            document.getElementsByClassName('mallnav')[0].style.left = '0';
         }
         else if (tabName === 'sensor') {
             removeAreaPins();
-            removePeoplePins();
-            showSensorPins();
-            if (isOpenContentArea3) {
+            removePeoplePins(level);
+            hideHistory();
+            showSensor(level);
+            showCircles();
+            showTemp();
+            if (isOpenContentArea) {
                 closeContentArea()
             }
             document.getElementById('sensorLink').className += " active boxbutton--dark";
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            document.getElementById('spaces-list').style.visibility = 'hidden';
+            document.getElementsByClassName('mallnav')[0].style.left = '0';
         }
     }
 
@@ -710,6 +773,44 @@
         //     classie.remove(activeSpaceArea, 'map__space--selected');
         // }
     }
+
+    function hideCircles() {
+        for (var i = 0; i < circles.length; i++) {
+            circles[i].style.display = "none";
+        }
+    }
+
+    function showCircles() {
+        for (var i = 0; i < circles.length; i++) {
+            circles[i].style.display = "block";
+        }
+    }
+
+    function hideHistory() {
+        for (var i = 0; i < hist.length; i++) {
+            hist[i].style.display = "none";
+        }
+    }
+    function showHistory() {
+        for (var i = 0; i < hist.length; i++) {
+            hist[i].style.display = "block";
+        }
+    }
+
+    /**
+     * Show temperature values above the ac icon
+     */
+    function showTemp() {
+        document.documentElement.style.setProperty('--state', 'visible')
+    }
+
+    /**
+     * hide temperature values above the ac icon
+     */
+     function hideTemp() {
+        document.documentElement.style.setProperty('--state', 'hidden')
+    }
+
     /**
      * for smaller screens: open search bar
      */

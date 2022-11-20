@@ -1,3 +1,22 @@
+@font-face {
+    font-family: "Shabnam-light";
+    src: local(Shabnam Light), url("../fonts/Shabnam-Light.woff2");
+    /* src: url("../font/roboto/Roboto-Light.eot?#iefix") format("embedded-opentype"), url("../font/roboto/Roboto-Light.woff2") format("woff2"), url("../font/roboto/Roboto-Light.woff") format("woff"), url("../font/roboto/Roboto-Light.ttf") format("truetype"); */
+    font-weight: 300;
+}
+@font-face {
+    font-family: "Shabnam";
+    src: local(Shabnam Regular), url("../fonts/Shabnam.woff2");
+    /* src: url("../font/roboto/Roboto-Regular.eot?#iefix") format("embedded-opentype"), url("../font/roboto/Roboto-Regular.woff2") format("woff2"), url("../font/roboto/Roboto-Regular.woff") format("woff"), url("../font/roboto/Roboto-Regular.ttf") format("truetype"); */
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Shabnam-bold";
+    src: url("../fonts/Shabnam-Bold.woff2");
+    /* src: url("../font/roboto/Roboto-Bold.eot?#iefix") format("embedded-opentype"), url("../font/roboto/Roboto-Bold.woff2") format("woff2"), url("../font/roboto/Roboto-Bold.woff") format("woff"), url("../font/roboto/Roboto-Bold.ttf") format("truetype"); */
+    font-weight: 700;
+}
+
 *,
 *::after,
 *::before {
@@ -5,6 +24,9 @@
     box-sizing: border-box;
 }
 
+* {
+    font-family: "Shabnam";
+}
 .clearfix::before,
 .clearfix::after {
     content: '';
@@ -371,10 +393,12 @@ button:focus {
 
 .map__tree {
     fill: #7bad7f;
+    visibility: hidden;
 }
 
 .map__lake {
     fill: #a2bbdd;
+    visibility: hidden;
 }
 
 .map__space {
@@ -618,25 +642,25 @@ button:focus {
 
 .grouped-by-category [data-category='1']:first-child::before,
 .grouped-by-category :not([data-category='1'])+[data-category='1']::before {
-    content: 'Nourish & Refresh';
+    content: 'دسته اول';
     color: #7cbf7f;
 }
 
 .grouped-by-category [data-category='2']:first-child::before,
 .grouped-by-category :not([data-category='2'])+[data-category='2']::before {
-    content: 'Learn & Create';
+    content: 'دسته دوم';
     color: #6584c7;
 }
 
 .grouped-by-category [data-category='3']:first-child::before,
 .grouped-by-category :not([data-category='3'])+[data-category='3']::before {
-    content: 'Swap & Give';
+    content: 'دسته سوم';
     color: #dc4b7c;
 }
 
 .grouped-by-category [data-category='4']:first-child::before,
 .grouped-by-category :not([data-category='4'])+[data-category='4']::before {
-    content: 'Relax & Recharge';
+    content: 'دسته چهارم';
     color: #8d65e0;
 }
 
@@ -660,6 +684,16 @@ button:focus {
 
 .list__item--active .list__link,
 .list__link:hover {
+    color: #515158;
+}
+.list__link1 {
+    font-size: 0.85em;
+    display: block;
+    padding: 0.5em 0.5em 0.5em 0;
+}
+
+.list__item--active .list__link1,
+.list__link1:hover {
     color: #515158;
 }
 
@@ -767,6 +801,10 @@ button:focus {
 
 .pin[data-category='4'] .iconMall--pin {
     fill: #8d65e0;
+}
+
+.pin[data-category='5'] .iconMall--pin {
+    fill: green;
 }
 
 .pin--active .iconMall--pin {
@@ -997,19 +1035,269 @@ button:focus {
     border-top: none;
 }
 
+.pin--1-11 {
+    top: 20vmin;
+    left: 23vmin;
+}
+
+.pin--1-12 {
+    top: 52vmin;
+    left: 3vmin;
+}
+
+.pin--1-13 {
+    top: 60vmin;
+    left: 20vmin;
+}
+
+.pin--1-21 {
+    top: 39vmin;
+    left: 10vmin;
+}
+
+.pin--1-22 {
+    top: 18vmin;
+    left: 63vmin;
+}
+
+.pin--1-23 {
+    top: 47vmin;
+    left: 70vmin;
+}
+.pin--1-24 {
+    top: 38vmin;
+    left: 34vmin;
+}
+
+.pin--1-21::before {
+    content: "\2103 24";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+}
+
+.pin--1-22::before {
+    content: "\2103 25.5";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+}
+.pin--1-23::before {
+    content: "\2103 26";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+}
+
+.pin--1-24::before {
+    content: "\2103 24";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+}
+
+.pin--2-11 {
+    top: 34vmin;
+    left: 12vmin;
+}
+
+.pin--2-12 {
+    top: 27vmin;
+    left: 48vmin;
+}
+
+.pin--2-21 {
+    top: 39vmin;
+    left: 10vmin;
+}
+
+.pin--2-22 {
+    top: 47vmin;
+    left: 70vmin;
+}
+
+
+.pin--2-21::before {
+    content: "\2103 24";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+}
+
+/* .pin--2-22::before {
+    content: "\2103 25.5";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+} */
+
+.pin--3-11 {
+    top: 30vmin;
+    left: 21vmin;
+}
+
+.pin--3-12 {
+    top: 15vmin;
+    left: 50vmin;
+}
+
+.pin--3-13 {
+    top: 62vmin;
+    left: 51vmin;
+}
+
+.pin--3-21 {
+    top: 18vmin;
+    left: 13vmin;
+}
+
+.pin--3-22 {
+    top: 45vmin;
+    left: 48vmin;
+}
+
+.pin--3-23 {
+    top: 20vmin;
+    left: 76vmin;
+}
+.pin--3-24 {
+    top: 50vmin;
+    left: 15vmin;
+}
+
+.pin--3-21::before {
+    content: "\2103 24";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+}
+
+.pin--3-22::before {
+    content: "\2103 24.4";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+}
+
+.pin--3-23::before {
+    content: "\2103 25.5";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+}
+
+.pin--3-24::before {
+    content: "\2103 24";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+}
+
 .pin--4-11 {
     top: 10vmin;
     left: 21vmin;
 }
 
 .pin--4-12 {
-    top: 15vmin;
-    left: 20vmin;
+    top: 59vmin;
+    left: 10vmin;
 }
 
 .pin--4-13 {
     top: 15vmin;
     left: 88vmin;
+}
+
+.pin--4-21 {
+    top: 18vmin;
+    left: 13vmin;
+}
+
+.pin--4-22 {
+    top: 18vmin;
+    left: 49vmin;
+}
+
+.pin--4-23 {
+    top: 20vmin;
+    left: 76vmin;
+}
+.pin--4-24 {
+    top: 50vmin;
+    left: 15vmin;
+}
+
+.pin--4-21::before {
+    content: "\2103 24";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+}
+
+.pin--4-23::before {
+    content: "\2103 25.5";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
+}
+
+.pin--4-24::before {
+    content: "\2103 24";
+    font-size:1.5em;
+    color: #23a944;
+    position: absolute;
+    top: -4vmin;
+    width: max-content;
+    height: fit-content;
+    visibility: var(--state);
 }
 
 .level__PeoplePins {
@@ -1056,25 +1344,20 @@ button:focus {
     transform: translate3d(0, 0, 0);
 }
 
-.pin--4-21 {
-    top: 10vmin;
-    left: 16vmin;
+.sensors {
+    display: none;
 }
 
-.pin--4-22 {
-    top: 15vmin;
-    left: 24vmin;
-}
-
-.pin--4-23 {
-    top: 15vmin;
-    left: 81vmin;
+.locHistory {
+    display: none;
 }
 
 .pin--blink .icon-person {
     fill: #dc4b7c !important;
     animation: flicker 1.5s ease-in-out;
 }
+
+
 
 /* .pin--blink::before {
     content: "25.5 c";
@@ -1103,7 +1386,23 @@ button:focus {
     }
 }
 
-@media screen and (max-width: 65.625em),
+@media screen and (max-width: 700px),
+screen and (max-height: 40.625em) {
+    .level::after {
+        top: 0em;
+    }
+    .content__desc {
+        text-align: center;
+    }
+    .content__item--current {
+        padding-right: 0;
+    }
+    .content--open .content__item {
+        width: 100vmin !important;
+    }
+}
+
+@media screen and (max-width: 1200px),
 screen and (max-height: 40.625em) {
     .mainMall {
         width: 100vw;
@@ -1121,7 +1420,16 @@ screen and (max-height: 40.625em) {
         right: 0;
     }
 
-    .open-search,
+    .open-search {
+        border-radius: 50%;
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 30px;
+        z-index: 1;
+        box-shadow: 0 5px 12px 0 rgb(0 0 0 / 16%);
+    }
+
     .close-search {
         border-radius: 50%;
         position: absolute;
@@ -1129,10 +1437,28 @@ screen and (max-height: 40.625em) {
         top: 0;
         right: 30px;
         z-index: 1000;
+        box-shadow: 0 5px 12px 0 rgb(0 0 0 / 16%);
     }
 
+    
     .mallnav {
-        top: 4em;
+        top: 0;
+        display: flex;
+        flex-direction: row-reverse;
+        left: 0 !important;
+        margin: 0 3vmin;
+    }
+    
+    .mall {
+        height: 100% !important;
+        width: 90% !important;
+    }
+
+    .content--open .content__item {
+        -webkit-transition: none;
+        transition:cubic-bezier(0.075, 0.82, 0.165, 1);
+        width: 100vmax;
+        margin: 0;
     }
 
     .containerMall {
@@ -1150,35 +1476,75 @@ screen and (max-height: 40.625em) {
 
 }
 
-/* <svg class="map map--4" viewBox="0 0 1200 800" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-    <defs>
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:rgba(0,255,0,0.6);stop-opacity:1"></stop>
-      <stop offset="100%" style="stop-color:rgb(0,255,255);stop-opacity:1"></stop>
-    </linearGradient>
-  </defs>
-          <title>Map Level 2</title>
-          <polygon points="1035.94 787.41 1035.94 423.16 855.37 423.16 855.37 350.52 1187.28 350.52 1187.28 12.59 548.09 12.59 548.09 68.87 437.36 68.87 437.36 12.59 49.37 12.59 49.37 366.5 12.72 366.5 12.72 787.41 356.2 787.41 414.93 584.41 554.4 584.41 627.81 787.41 1035.94 787.41" class="map__ground"></polygon>
-          <path d="M1187.28,12.59V350.52H855.37v72.64h180.58V787.41H627.81l-73.41-203H414.93l-58.73,203H12.72V366.5H49.37V12.59h388V68.87H548.08V12.59h639.19M1200,0H535.36V56.28H450.09V0H36.65V353.91H0V800H365.8l2.64-9.13L424.52,597H545.44l70.39,194.65,3,8.35h429.82V410.57H868.09V363.11H1200V0h0Z" class="map__outline"></path>
-          <path d="M674.5,647c2,16.3,29.2,31.3,51.4,28.9c51.9-5.8,80.3-107.4,64.7-119c-6.4-4.7-27.9,11.2-70.8,43.1C676.6,632,673.7,640.5,674.5,647z" class="map__lake"></path>
-          <ellipse cx="738.82" cy="595.48" rx="13.95" ry="13.8" class="map__tree"></ellipse>
-          <ellipse cx="768.46" cy="605.4" rx="13.95" ry="13.8" class="map__tree"></ellipse>
-          <ellipse cx="744.64" cy="624.92" rx="13.95" ry="13.8" class="map__tree"></ellipse>
-          <rect x="666.9" y="565.6" width="26.3" height="26" class="map__space"></rect>
-          <path data-space="4.05" d="M454.8,266.2h63c13.4-0.1,24.4,10.8,24.5,24.2c0,0,0,0,0,0l0,0v199.4c-0.1,13.4-11.1,24.3-24.5,24.2h-63c-13.4,0.1-24.4-10.8-24.5-24.2c0,0,0,0,0,0l0,0V290.4C430.3,277,441.3,266.1,454.8,266.2C454.7,266.2,454.7,266.2,454.8,266.2L454.8,266.2L454.8,266.2z" class="map__space"></path>
-          <rect x="282.3" y="478.1" width="26.3" height="26" class="map__space"></rect>
-          <rect x="12.7" y="366.5" width="202.4" height="175.1" class="map__space"></rect>
-          <rect x="12.7" y="550.6" width="50.9" height="236.8" class="map__space"></rect>
-          <circle data-space="4.07" cx="143.1" cy="708.1" r="49.5" class="map__space"></circle>
-          <circle data-space="4.01" cx="288.6" cy="658.6" r="66" class="map__space"></circle>
-          <polygon data-space="4.02" points="49.4,354.1 362.1,354.1 362.1,230.9 600,230.9 600,297.1 855.4,297.1 855.4,12.6 548.1,12.6 548.1,68.9 437.4,68.9 437.4,12.6 49.4,12.6 " class="map__space"></polygon>
-          <rect x="1065.6" y="12.6" width="121.7" height="110.5" class="map__space"></rect>
-          <rect data-space="4.03" x="1065.6" y="132.1" width="121.7" height="218.4" class="map__space"></rect>
-          <polygon points="901.3,92.6 886.9,67.8 901.3,43 929.9,43 944.2,67.8 929.9,92.6 " class="map__space"></polygon>
-          <polygon points="953.3,129.1 938.6,103.6 953.3,78.1 982.8,78.1 997.5,103.6 982.8,129.1 " class="map__space"></polygon>
-          <rect x="951.6" y="213.1" width="73.5" height="73.5" class="map__space"></rect>
-          <rect data-space="4.06" x="639.6" y="399.5" width="151.5" height="121.1" class="map__space"></rect>
-          <rect data-space="4.04" x="855.4" y="423.2" width="180.6" height="364.2" class="map__space"></rect>
-          <polygon points="613.2,747 846.6,658.6 846.6,787.4 627.8,787.4" class="map__space"></polygon>
-    <circle r="60" stroke="black" stroke-width="3" fill="url(#grad1)" cy="100" cx="1150"></circle>
-        </svg> */
+@media screen and (min-width: 1200px) and (max-width: 1384px), screen and (max-height: 40.625em) {
+    .mainMall {
+        width: 80vw;
+    }
+
+    .spaces-list,
+    .search {
+        width: 100vw;
+        right: 100%;
+        left: auto;
+    }
+
+    .spaces-list--open,
+    .spaces-list--open .search {
+        right: 0;
+    }
+
+    .open-search {
+        border-radius: 50%;
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 30px;
+        z-index: 1;
+        box-shadow: 0 5px 12px 0 rgb(0 0 0 / 16%);
+    }
+
+    .close-search {
+        border-radius: 50%;
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 30px;
+        z-index: 1000;
+        box-shadow: 0 5px 12px 0 rgb(0 0 0 / 16%);
+    }
+
+    
+    .mallnav {
+        top: 0;
+        left: 0 !important;
+        display: flex;
+        flex-direction: row-reverse;
+        margin: 0 6vmin;
+    }
+    
+    .mall {
+        height: 100% !important;
+        width: 90% !important;
+    }
+
+    .content--open .content__item {
+        -webkit-transition: none;
+        transition:cubic-bezier(0.075, 0.82, 0.165, 1);
+        width: 80vmax;
+        margin: 0;
+    }
+
+    .containerMall {
+        overflow: hidden;
+    }
+
+    .containerMall--overflow {
+        overflow: auto;
+    }
+
+    .content__item {
+        overflow: auto;
+    }
+
+
+}

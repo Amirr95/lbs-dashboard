@@ -3,7 +3,31 @@
 {% block title %} Sign IN {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style>
+  @font-face {
+    font-family: "Shabnam";
+    src: local(Shabnam Light), url("../fonts/Shabnam-Light.woff2");
+    /* src: url("../font/roboto/Roboto-Light.eot?#iefix") format("embedded-opentype"), url("../font/roboto/Roboto-Light.woff2") format("woff2"), url("../font/roboto/Roboto-Light.woff") format("woff"), url("../font/roboto/Roboto-Light.ttf") format("truetype"); */
+    font-weight: 300;
+}
+@font-face {
+    font-family: "Shabnam";
+    src: local(Shabnam Regular), url("../fonts/Shabnam.woff2");
+    /* src: url("../font/roboto/Roboto-Regular.eot?#iefix") format("embedded-opentype"), url("../font/roboto/Roboto-Regular.woff2") format("woff2"), url("../font/roboto/Roboto-Regular.woff") format("woff"), url("../font/roboto/Roboto-Regular.ttf") format("truetype"); */
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Shabnam";
+    src: url("../fonts/Shabnam-Bold.woff2");
+    /* src: url("../font/roboto/Roboto-Bold.eot?#iefix") format("embedded-opentype"), url("../font/roboto/Roboto-Bold.woff2") format("woff2"), url("../font/roboto/Roboto-Bold.woff") format("woff"), url("../font/roboto/Roboto-Bold.ttf") format("truetype"); */
+    font-weight: 700;
+}
+* {
+  font-family: "Shabnam";
+}
+</style>
+{% endblock stylesheets %}
 
 {% block content %}
 
@@ -22,17 +46,22 @@
       <div class="page-header min-vh-75">
         <div class="container">
           <div class="row">
+            <div class="col-md-6">
+              <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+                <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('{{ ASSETS_ROOT }}/img/curved-images/curved6.jpg')"></div>
+              </div>
+            </div>
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
               <div class="card card-plain mt-8">
                 <div class="card-header pb-0 text-left bg-transparent">
                   <h3 class="font-weight-bolder text-info text-gradient">
-                    Soft UI Dashboard
+                    داشبورد خدمات مکان‌محور اینفورتک
                   </h3>
                   <p class="mb-0">
                     {% if msg %}
                       <span class="text-danger">{{ msg | safe }}</span>
                     {% else %}
-                      Add your credentials
+                      اطلاعات خود را وارد کنید
                     {% endif %}                     
                   </p>
                 </div>
@@ -42,22 +71,22 @@
                     
                     {% csrf_token %}
 
-                    <label>Username</label>
+                    <label>نام کاربری</label>
                     <div class="mb-3">
                       {{ form.username }}
                     </div>
 
-                    <label>Password</label>
+                    <label>رمز عبور</label>
                     <div class="mb-3">
                       {{ form.password }}
                     </div>
 
                     <div class="text-center">
-                      <button type="submit" name="login" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign IN</button>
+                      <button type="submit" name="login" class="btn bg-gradient-info w-100 mt-4 mb-0">ورود</button>
                     </div>
 
                     <div class="text-center">
-                      <a href="{% url 'register' %}" class="btn bg-gradient-secondary w-100 mt-4 mb-0">Sign UP</a>
+                      <a href="{% url 'register' %}" class="btn bg-gradient-secondary w-100 mt-4 mb-0">ثبت نام</a>
                     </div>
 
                   </form>
@@ -82,11 +111,6 @@
                                                            
                   </p>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
-                <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('{{ ASSETS_ROOT }}/img/curved-images/curved6.jpg')"></div>
               </div>
             </div>
           </div>
