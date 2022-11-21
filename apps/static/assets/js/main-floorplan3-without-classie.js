@@ -74,7 +74,7 @@
         sensorTab = mallNav.querySelector('.tablinks__sensor'),
 
         // pins
-        pins = [].slice.call(mallLevelsEl.querySelectorAll('.pin')),
+        pins = [].slice.call(mallLevelsEl.querySelectorAll('.areaPin')),
         // content element
         contentEl = document.querySelector('.content'),
         // content close ctrl
@@ -283,7 +283,7 @@
 
 
     }
-    
+
     function showPeoplePin(spacerefval) {
         classie.add(mallLevelsEl.querySelector('.pin[data-space="' + spacerefval + '"]'), 'pin--blink');
     }
@@ -357,7 +357,7 @@
         removePeoplePins()
         // show back the complete list of spaces
         spacesList.filter();
-        
+
         // close content area if it is open
         if (isOpenContentArea) {
             closeContentArea();
@@ -545,11 +545,13 @@
                 peopleList = people.querySelector('.peopleList'),
                 lists = peopleList.querySelectorAll('.list__item');
             for (var i = 0; i < lists.length; i++) {
-                if(lists[i].getAttribute("data-level")===level.toString()) {    
-                    lists[i].style.display = "block";}
-                else {
-                    lists[i].style.display = "none";}
+                if (lists[i].getAttribute("data-level") === level.toString()) {
+                    lists[i].style.display = "block";
                 }
+                else {
+                    lists[i].style.display = "none";
+                }
+            }
         }
         else if (tabName === 'history') {
             removeAreaPins();
@@ -807,7 +809,7 @@
     /**
      * hide temperature values above the ac icon
      */
-     function hideTemp() {
+    function hideTemp() {
         document.documentElement.style.setProperty('--state', 'hidden')
     }
 
