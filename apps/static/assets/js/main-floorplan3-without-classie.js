@@ -72,9 +72,10 @@
         peopleTab = mallNav.querySelector('.tablinks__people'),
         historyTab = mallNav.querySelector('.tablinks__history'),
         sensorTab = mallNav.querySelector('.tablinks__sensor'),
+        fenceTab = mallNav.querySelector('.tablinks__fence'),
 
         // pins
-        pins = [].slice.call(mallLevelsEl.querySelectorAll('.areaPin')),
+        pins = [].slice.call(mallLevelsEl.querySelectorAll('.pin')),
         // content element
         contentEl = document.querySelector('.content'),
         // content close ctrl
@@ -160,6 +161,7 @@
         peopleTab.addEventListener('click', function () { OpenTab('people', selectedLevel); })
         historyTab.addEventListener('click', function () { OpenTab('history'); })
         sensorTab.addEventListener('click', function () { OpenTab('sensor'); })
+        fenceTab.addEventListener('click', function () { OpenTab('fence'); })
 
         // sort by name ctrl - add/remove category name (css pseudo element) from list and sorts the spaces by name 
         sortByNameCtrl.addEventListener('click', function () {
@@ -187,16 +189,16 @@
         pins.forEach(function (pin) {
             var contentItem = contentEl.querySelector('.content__item[data-space="' + pin.getAttribute('data-space') + '"]');
 
-            pin.addEventListener('mouseenter', function () {
-                if (!isOpenContentArea) {
-                    classie.add(contentItem, 'content__item--hover');
-                }
-            });
-            pin.addEventListener('mouseleave', function () {
-                if (!isOpenContentArea) {
-                    classie.remove(contentItem, 'content__item--hover');
-                }
-            });
+            // pin.addEventListener('mouseenter', function () {
+            //     if (!isOpenContentArea) {
+            //         classie.add(contentItem, 'content__item--hover');
+            //     }
+            // });
+            // pin.addEventListener('mouseleave', function () {
+            //     if (!isOpenContentArea) {
+            //         classie.remove(contentItem, 'content__item--hover');
+            //     }
+            // });
             pin.addEventListener('click', function (ev) {
                 ev.preventDefault();
                 // open content for this pin
@@ -350,6 +352,7 @@
         removeSensor();
         hideTemp();
         hideHistory();
+        removeFence();
         // shows surrounding element
         showSurroundings();
         // hide mall nav ctrls
@@ -389,6 +392,10 @@
         var levelEl = levelEl || mallLevels[selectedLevel - 1];
         classie.add(levelEl.querySelector('.level__sensor'), 'level__sensor--active');
     }
+    function showFence(levelEl) {
+        var levelEl = levelEl || mallLevels[selectedLevel - 1];
+        classie.add(levelEl.querySelector('.level__fence'), 'level__fence--active');
+    }
 
     /**
      * Removes the level´s pins
@@ -412,6 +419,13 @@
     function removeSensor(levelEl) {
         var levelEl = levelEl || mallLevels[selectedLevel - 1];
         classie.remove(levelEl.querySelector('.level__sensor'), 'level__sensor--active');
+    }
+    /**
+     * Removes the level´s fences 
+     */
+    function removeFence(levelEl) {
+        var levelEl = levelEl || mallLevels[selectedLevel - 1];
+        classie.remove(levelEl.querySelector('.level__fence'), 'level__fence--active');
     }
 
     /**
@@ -520,6 +534,7 @@
         if (tabName === 'area') {
             removePeoplePins(level);
             removeSensor(level);
+            removeFence(level);
             hideCircles();
             hideHistory();
             showAreaPins();
@@ -528,12 +543,31 @@
             document.getElementById('spaces-list').style.visibility = 'visible';
             hideTemp();
         }
+        else if (tabName === 'fence') {
+            removePeoplePins();
+            removeAreaPins();
+            removeSensor();
+            hideCircles();
+            hideTemp();
+            hideHistory();
+            showFence();
+            if (isOpenContentArea) {
+                closeContentArea()
+            }
+            document.getElementById('fenceLink').className += " active boxbutton--dark";
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            document.getElementById('spaces-list').style.visibility = 'hidden';
+            document.getElementsByClassName('mallnav')[0].style.left = '0';
+        }
         else if (tabName === 'people') {
             showPeoplePins();
             removeAreaPins();
             removeSensor();
             hideHistory();
             hideCircles();
+            removeFence();
             if (isOpenContentArea) {
                 closeContentArea()
             }
@@ -558,6 +592,10 @@
             removePeoplePins(level);
             showPeoplePins();
             showHistory();
+            removeSensor();
+            hideCircles();
+            hideTemp();
+            removeFence();
             if (isOpenContentArea) {
                 closeContentArea()
             }
@@ -572,6 +610,7 @@
             removeAreaPins();
             removePeoplePins(level);
             hideHistory();
+            removeFence();
             showSensor(level);
             showCircles();
             showTemp();
