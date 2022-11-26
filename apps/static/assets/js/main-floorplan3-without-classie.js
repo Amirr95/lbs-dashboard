@@ -101,6 +101,7 @@
         sortByNameCtrl2 = document.querySelector('#sort-by-name2'),
         // listjs initiliazation (all mall´s spaces)
         spacesList = new List('spaces-list', { valueNames: ['list__link', { data: ['level'] }, { data: ['category'] }] }),
+        peopleList = new List('spaces-list', { valueNames: ['list__link1', { data: ['level'] }, { data: ['category'] }] }),
 
         /* -------------------------------------------------------------------------- */
         /*                              Start people list                             */
@@ -114,7 +115,6 @@
         isShowingPeoplePin,
         // reference to the current shows space (name set in the data-name attr of both the listed people and the pins on the map)
         // listjs initiliazation (all mall´s people)
-        peopleList = new List('people-list', { valueNames: ['list__link', { data: ['level'] }, { data: ['category'] }] }),
         /* -------------------------------------------------------------------------- */
         /*                             End of people list                             */
         /* -------------------------------------------------------------------------- */

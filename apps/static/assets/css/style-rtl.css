@@ -636,7 +636,11 @@ button:focus {
 .grouped-by-category [data-category='3']:first-child::before,
 .grouped-by-category :not([data-category='3'])+[data-category='3']::before,
 .grouped-by-category [data-category='4']:first-child::before,
-.grouped-by-category :not([data-category='4'])+[data-category='4']::before {
+.grouped-by-category :not([data-category='4'])+[data-category='4']::before,
+.grouped-by-category [data-category='6']:first-child::before,
+.grouped-by-category :not([data-category='6'])+[data-category='6']::before,
+.grouped-by-category [data-category='7']:first-child::before,
+.grouped-by-category :not([data-category='7'])+[data-category='7']::before {
     font-size: 1.25em;
     position: absolute;
     top: -1.75em;
@@ -665,6 +669,18 @@ button:focus {
 .grouped-by-category [data-category='4']:first-child::before,
 .grouped-by-category :not([data-category='4'])+[data-category='4']::before {
     content: 'دسته چهارم';
+    color: #8d65e0;
+}
+
+.grouped-by-category [data-category='6']:first-child::before,
+.grouped-by-category :not([data-category='6'])+[data-category='6']::before {
+    content: 'افراد';
+    color: #7cbf7f;
+}
+
+.grouped-by-category [data-category='7']:first-child::before,
+.grouped-by-category :not([data-category='7'])+[data-category='7']::before {
+    content: 'تجهیزات';
     color: #8d65e0;
 }
 
@@ -810,6 +826,14 @@ button:focus {
 
 .pin[data-category='5'] .iconMall--pin {
     fill: green;
+}
+
+.pin[data-category='6'] .iconMall--pin {
+    fill: #7cbf7f;
+}
+
+.pin[data-category='7'] .iconMall--pin {
+    fill: #8d65e0;
 }
 
 .pin--active .iconMall--pin {
@@ -1055,6 +1079,61 @@ button:focus {
     left: 20vmin;
 }
 
+.pin--1-14 {
+    top: 45vmin;
+    left: 36vmin;
+}
+
+.pin--1-15 {
+    top: 45vmin;
+    left: 37vmin;
+}
+
+.pin--1-16 {
+    top: 57vmin;
+    left: 53vmin;
+}
+
+.pin--1-17 {
+    top: 60vmin;
+    left: 70vmin;
+}
+
+.pin--1-18 {
+    top: 31vmin;
+    left: 57vmin;
+}
+
+.pin--1-19 {
+    top: 22vmin;
+    left: 74vmin;
+}
+
+.pin--1-110 {
+    top: 48vmin;
+    left: 27vmin;
+}
+
+.pin--1-111 {
+    top: 45vmin;
+    left: 27vmin;
+}
+
+.pin--1-112 {
+    top: 16vmin;
+    left: 54vmin;
+}
+
+.pin--1-113 {
+    top: 41vmin;
+    left: 17vmin;
+}
+
+.pin--1-114 {
+    top: 13vmin;
+    left: 31vmin;
+}
+
 .pin--1-21 {
     top: 39vmin;
     left: 10vmin;
@@ -1144,6 +1223,36 @@ button:focus {
     left: 48vmin;
 }
 
+.pin--2-13 {
+    top: 51vmin;
+    left: 30vmin;
+}
+
+.pin--2-14 {
+    top: 65vmin;
+    left: 50vmin;
+}
+
+.pin--2-15 {
+    top: 45vmin;
+    left: 27vmin;
+}
+
+.pin--2-16 {
+    top: 16vmin;
+    left: 54vmin;
+}
+
+.pin--2-17 {
+    top: 41vmin;
+    left: 17vmin;
+}
+
+.pin--2-18 {
+    top: 13vmin;
+    left: 31vmin;
+}
+
 .pin--2-21 {
     top: 39vmin;
     left: 10vmin;
@@ -1207,9 +1316,34 @@ button:focus {
     left: 51vmin;
 }
 
+.pin--3-14 {
+    top: 50vmin;
+    left: 65vmin;
+}
+
+.pin--3-15 {
+    top: 45vmin;
+    left: 27vmin;
+}
+
+.pin--3-16 {
+    top: 37vmin;
+    left: 54vmin;
+}
+
+.pin--3-17 {
+    top: 41vmin;
+    left: 26vmin;
+}
+
+.pin--3-18 {
+    top: 30vmin;
+    left: 40vmin;
+}
+
 .pin--3-21 {
     top: 18vmin;
-    left: 13vmin;
+    left: 53vmin;
 }
 
 .pin--3-22 {
@@ -1294,6 +1428,31 @@ button:focus {
 .pin--4-13 {
     top: 15vmin;
     left: 88vmin;
+}
+
+.pin--4-14 {
+    top: 50vmin;
+    left: 50vmin;
+}
+
+.pin--4-15 {
+    top: 57vmin;
+    left: 21vmin;
+}
+
+.pin--4-16 {
+    top: 60vmin;
+    left: 54vmin;
+}
+
+.pin--4-17 {
+    top: 26vmin;
+    left: 52vmin;
+}
+
+.pin--4-18 {
+    top: 30vmin;
+    left: 35vmin;
 }
 
 .pin--4-21 {
@@ -1407,6 +1566,7 @@ button:focus {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
+
 .level__fence {
     position: absolute;
     top: 0;
