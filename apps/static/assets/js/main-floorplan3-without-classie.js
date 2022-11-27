@@ -99,9 +99,19 @@
         // sort by ctrls
         sortByNameCtrl = document.querySelector('#sort-by-name'),
         sortByNameCtrl2 = document.querySelector('#sort-by-name2'),
+        personFilter1 = document.querySelector('#filter-person-lvl-1'),
+        personFilter2 = document.querySelector('#filter-person-lvl-2'),
+        personFilter3 = document.querySelector('#filter-person-lvl-3'),
+        personFilter4 = document.querySelector('#filter-person-lvl-4'),
+
+        assetFilter1 = document.querySelector('#filter-asset-lvl-1'),
+        assetFilter2 = document.querySelector('#filter-asset-lvl-2'),
+        assetFilter3 = document.querySelector('#filter-asset-lvl-3'),
+        assetFilter4 = document.querySelector('#filter-asset-lvl-4'),
+
         // listjs initiliazation (all mall´s spaces)
         spacesList = new List('spaces-list', { valueNames: ['list__link', { data: ['level'] }, { data: ['category'] }] }),
-        peopleList = new List('spaces-list', { valueNames: ['list__link1', { data: ['level'] }, { data: ['category'] }] }),
+        peopleList = new List('spaces-list', { valueNames: ['list__link', { data: ['level'] }, { data: ['category'] }] }),
 
         /* -------------------------------------------------------------------------- */
         /*                              Start people list                             */
@@ -174,14 +184,72 @@
                 spacesList.sort('category');
             }
         });
-        sortByNameCtrl2.addEventListener('click', function () {
+
+
+        personFilter1.addEventListener('click', function () {
             if (this.checked) {
-                classie.remove(peopleEl, 'grouped-by-category');
-                spacesList.sort('list__link');
+                showPersonPins();
             }
             else {
-                classie.add(peopleEl, 'grouped-by-category');
-                spacesList.sort('category');
+                removePersonPins();
+            }
+        });
+        personFilter2.addEventListener('click', function () {
+            if (this.checked) {
+                showPersonPins();
+            }
+            else {
+                removePersonPins();
+            }
+        });
+        personFilter3.addEventListener('click', function () {
+            if (this.checked) {
+                showPersonPins();
+            }
+            else {
+                removePersonPins();
+            }
+        });
+        personFilter4.addEventListener('click', function () {
+            if (this.checked) {
+                showPersonPins();
+            }
+            else {
+                removePersonPins();
+            }
+        });
+
+
+        assetFilter1.addEventListener('click', function () {
+            if (this.checked) {
+                showAssetPins();
+            }
+            else {
+                removeAssetPins();
+            }
+        });
+        assetFilter2.addEventListener('click', function () {
+            if (this.checked) {
+                showAssetPins();
+            }
+            else {
+                removeAssetPins();
+            }
+        });
+        assetFilter3.addEventListener('click', function () {
+            if (this.checked) {
+                showAssetPins();
+            }
+            else {
+                removeAssetPins();
+            }
+        });
+        assetFilter4.addEventListener('click', function () {
+            if (this.checked) {
+                showAssetPins();
+            }
+            else {
+                removeAssetPins();
             }
         });
 
@@ -283,15 +351,6 @@
         // blinkClass.toggle('pin--blink');
         blinkClass.add('pin--blink');
 
-
-    }
-
-    function showPeoplePin(spacerefval) {
-        classie.add(mallLevelsEl.querySelector('.pin[data-space="' + spacerefval + '"]'), 'pin--blink');
-    }
-
-    function hidePeoplePin(spacerefval) {
-        classie.remove(mallLevelsEl.querySelector('.pin[data-space="' + spacerefval + '"]'), 'pin--active');
     }
 
     /**
@@ -388,6 +447,29 @@
         var levelEl = levelEl || mallLevels[selectedLevel - 1];
         classie.add(levelEl.querySelector('.level__PeoplePins'), 'level__PeoplePins--active');
     }
+
+    function showPersonPins(levelEl) {
+        var levelEl = levelEl || mallLevels[selectedLevel - 1];
+        classie.add(levelEl.querySelector('.level__PeoplePins'), 'level__PeoplePins--active');
+        document.documentElement.style.setProperty('--person_op', '1')
+    }
+    function removePersonPins(levelEl) {
+        var levelEl = levelEl || mallLevels[selectedLevel - 1];
+        classie.add(levelEl.querySelector('.level__PeoplePins'), 'level__PeoplePins--active');
+        document.documentElement.style.setProperty('--person_op', '0')
+    }
+
+    function showAssetPins(levelEl) {
+        var levelEl = levelEl || mallLevels[selectedLevel - 1];
+        classie.add(levelEl.querySelector('.level__PeoplePins'), 'level__PeoplePins--active');
+        document.documentElement.style.setProperty('--asset_op', '1')
+    }
+    function removeAssetPins(levelEl) {
+        var levelEl = levelEl || mallLevels[selectedLevel - 1];
+        classie.add(levelEl.querySelector('.level__PeoplePins'), 'level__PeoplePins--active');
+        document.documentElement.style.setProperty('--asset_op', '0')
+    }
+
     function showSensor(levelEl) {
         var levelEl = levelEl || mallLevels[selectedLevel - 1];
         classie.add(levelEl.querySelector('.level__sensor'), 'level__sensor--active');
@@ -545,6 +627,8 @@
         }
         else if (tabName === 'fence') {
             removePeoplePins();
+            removeAssetPins();
+            showPersonPins();
             removeAreaPins();
             removeSensor();
             hideCircles();
@@ -563,6 +647,8 @@
         }
         else if (tabName === 'people') {
             showPeoplePins();
+            showPersonPins();
+            showAssetPins();
             removeAreaPins();
             removeSensor();
             hideHistory();
@@ -590,7 +676,7 @@
         else if (tabName === 'history') {
             removeAreaPins();
             removePeoplePins(level);
-            showPeoplePins();
+            removeAssetPins();
             showHistory();
             removeSensor();
             hideCircles();

@@ -636,15 +636,11 @@ button:focus {
 .grouped-by-category [data-category='3']:first-child::before,
 .grouped-by-category :not([data-category='3'])+[data-category='3']::before,
 .grouped-by-category [data-category='4']:first-child::before,
-.grouped-by-category :not([data-category='4'])+[data-category='4']::before,
-.grouped-by-category [data-category='6']:first-child::before,
-.grouped-by-category :not([data-category='6'])+[data-category='6']::before,
-.grouped-by-category [data-category='7']:first-child::before,
-.grouped-by-category :not([data-category='7'])+[data-category='7']::before {
+.grouped-by-category :not([data-category='4'])+[data-category='4']::before {
     font-size: 1.25em;
     position: absolute;
     top: -1.75em;
-    left: 0;
+    right: 0;
     color: #c7c7c9;
 }
 
@@ -672,17 +668,17 @@ button:focus {
     color: #8d65e0;
 }
 
-.grouped-by-category [data-category='6']:first-child::before,
+/* .grouped-by-category [data-category='6']:first-child::before,
 .grouped-by-category :not([data-category='6'])+[data-category='6']::before {
     content: 'افراد';
-    color: #7cbf7f;
+    color: #6584c7;
 }
 
 .grouped-by-category [data-category='7']:first-child::before,
 .grouped-by-category :not([data-category='7'])+[data-category='7']::before {
     content: 'تجهیزات';
-    color: #8d65e0;
-}
+    color: #7cbf7f;
+} */
 
 .list__item::after {
     content: 'L' attr(data-level) ' / ' attr(data-space);
@@ -829,7 +825,7 @@ button:focus {
 }
 
 .pin[data-category='6'] .iconMall--pin {
-    fill: #7cbf7f;
+    fill: #6584c7;
 }
 
 .pin[data-category='7'] .iconMall--pin {
@@ -861,6 +857,18 @@ button:focus {
 .pin--active .iconMall--logo,
 .pin:hover .iconMall--logo {
     fill-opacity: 1;
+}
+
+.titlePeople::before {
+    content: 'افراد';
+    visibility: visible;
+    color: #6584c7;
+}
+
+.titleAsset::before {
+    content: 'تجهیزات';
+    visibility: visible;
+    color: #8d65e0;
 }
 
 /* Pins for floor 1 */
@@ -1545,6 +1553,20 @@ button:focus {
     transform: translate3d(0, 0, 0);
 }
 
+.level__PeoplePins--active .pin__icon__person {
+    /* stroke: #a9234d; */
+    opacity: var(--person_op);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.level__PeoplePins--active .pin__icon__asset {
+    /* stroke: #a9234d; */
+    opacity: var(--asset_op);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
 .level__sensor {
     position: absolute;
     top: 0;
@@ -1597,7 +1619,11 @@ button:focus {
     display: none;
 }
 
-.pin--blink .icon-person {
+.pin--blink .icon-person,
+.pin--blink .icon-laptop,
+.pin--blink .icon-tablet,
+.pin--blink .icon-hoover,
+.pin--blink .icon-trolley {
     fill: #dc4b7c !important;
     animation: flicker 1.5s ease-in-out;
 }
