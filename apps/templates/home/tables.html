@@ -38,13 +38,172 @@
 
   <div class="row">
     <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header pb-0">
-          <h6>Authors table</h6>
+      <div class="card mb-4" style="
+    height: fit-content;
+">
+        <div class="card-header mb-1 pb-1">
+          <h6>سوابق تردد مناطق</h6>
+          <div class="selection mb-2" style="
+    display: flex;
+">
+            <select class="form-select" aria-label="Default select example" style="
+    width: 10rem;
+    text-align: center;
+    margin-inline-end: 1em;
+">
+              <option selected="">انتخاب طبقه</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+            <select class="form-select" aria-label="Default select example" style="
+    width: 10rem;
+    text-align: center;
+    margin-inline-end: 1em;
+">
+              <option selected="">انتخاب ناحیه</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+            </select>
+            <div class="md-form md-outline input-with-post-icon datepicker" style="
+    margin-inline-end: 1em;
+    FONT-WEIGHT: 100;
+    FONT-WEIGHT: 100;
+">
+              <input placeholder="Select date" type="date" id="example" class="form-control">
+
+            </div>
+            <button class="btn btn-outline-primary my-0" type="button">جستجو</button>
+          </div>
         </div>
+
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
+            <table class="table table-striped table-bordered table-hover" style="
+    overflow-x: auto;">
+              <thead class="">
+                <tr style="
+">
+                  <th style="text-align: center;vertical-align: middle;padding: 0;" data-field="id" rowspan="2">
+                    <div class="th-inner sortable sortable-center both">نام</div>
+
+                  </th>
+                  <th style="text-align: center; vertical-align: middle;" rowspan="2">
+                    <div class="th-inner ">وضعیت</div>
+                    <div class="fht-cell"></div>
+                  </th>
+                  <th style="text-align: center; " colspan="2">
+                    <div class="th-inner ">موقعیت کنونی
+                    </div>
+                    <div class="fht-cell"></div>
+                  </th>
+                  <th style="text-align: center; vertical-align: middle; " data-field="operate" rowspan="2">
+                    <div class="th-inner ">ساعت ورود</div>
+                  </th>
+
+                  <th style="text-align: center; vertical-align: middle; " data-field="operate" rowspan="2">
+                    <div class="th-inner ">ساعت خروج</div>
+                  </th>
+                  <th style="text-align: center; vertical-align: middle; " data-field="operate" rowspan="2">
+                    <div class="th-inner ">مدت حضور</div>
+                  </th>
+                  <th style="text-align: center; vertical-align: middle; " data-field="operate" colspan="2">
+                    <div class="th-inner ">موقعیت پس از خروج</div>
+                  </th>
+                </tr>
+                <tr style="
+">
+                  <th style="text-align: center; vertical-align: middle; " data-field="operate">
+                    <div class="th-inner ">طبقه</div>
+                  </th>
+                  <th style="text-align: center; vertical-align: middle; " data-field="operate">
+                    <div class="th-inner ">ناحیه</div>
+                  </th>
+                  <th style="text-align: center; vertical-align: middle; " data-field="operate">
+                    <div class="th-inner ">طبقه</div>
+                  </th>
+                  <th style="text-align: center; vertical-align: middle; " data-field="operate">
+                    <div class="th-inner ">ناحیه</div>
+                  </th>
+                </tr>
+
+              </thead>
+              <tbody>
+                <tr>
+                  <td>کارمند 1</td>
+                  <td><span class="badge badge-sm bg-gradient-success">فعال</span></td>
+                  <td>1</td>
+                  <td>01</td>
+                  <td>09:01</td>
+                  <td>10:51</td>
+                  <td>01:50</td>
+                  <td>1</td>
+                  <td>03</td>
+                </tr>
+                <tr>
+                  <td>کارمند 2</td>
+                  <td><span class="badge badge-sm bg-gradient-success">فعال</span></td>
+                  <td>2</td>
+                  <td>01</td>
+                  <td>11:01</td>
+                  <td>11:51</td>
+                  <td>00:50</td>
+                  <td>1</td>
+                  <td>06</td>
+                </tr>
+                <tr>
+                  <td>کارمند 4</td>
+                  <td><span class="badge badge-sm bg-gradient-success">فعال</span></td>
+                  <td>4</td>
+                  <td>05</td>
+                  <td>11:01</td>
+                  <td>11:51</td>
+                  <td>00:50</td>
+                  <td>4</td>
+                  <td>03</td>
+                </tr>
+                <tr>
+                  <td>لپ‌تاپ طبقه اول</td>
+                  <td><span class="badge badge-sm bg-gradient-success">فعال</span></td>
+                  <td>1</td>
+                  <td>03</td>
+                  <td>8:12</td>
+                  <td>8:26</td>
+                  <td>00:14</td>
+                  <td>1</td>
+                  <td>02</td>
+                </tr>
+                <tr>
+                  <td>مهمان 1</td>
+                  <td><span class="badge badge-sm bg-gradient-success">فعال</span></td>
+                  <td>1</td>
+                  <td>04</td>
+                  <td>12:21</td>
+                  <td>14:50</td>
+                  <td>02:59</td>
+                  <td>خروج از مجموعه</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>کارمند 2</td>
+                  <td><span class="badge badge-sm bg-gradient-success">فعال</span></td>
+                  <td>2</td>
+                  <td>05</td>
+                  <td>07:23</td>
+                  <td>08:05</td>
+                  <td>00:42</td>
+                  <td>2</td>
+                  <td>01</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- <table class="table align-items-center mb-0">
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
@@ -61,7 +220,7 @@
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div>
-                        <img src="{{ ASSETS_ROOT }}/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
+                        <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-0 text-sm">John Michael</h6>
@@ -90,7 +249,7 @@
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div>
-                        <img src="{{ ASSETS_ROOT }}/img/team-3.jpg" class="avatar avatar-sm me-3" alt="user2">
+                        <img src="/static/assets/img/team-3.jpg" class="avatar avatar-sm me-3" alt="user2">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-0 text-sm">Alexa Liras</h6>
@@ -119,7 +278,7 @@
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div>
-                        <img src="{{ ASSETS_ROOT }}/img/team-4.jpg" class="avatar avatar-sm me-3" alt="user3">
+                        <img src="/static/assets/img/team-4.jpg" class="avatar avatar-sm me-3" alt="user3">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-0 text-sm">Laurent Perrier</h6>
@@ -148,7 +307,7 @@
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div>
-                        <img src="{{ ASSETS_ROOT }}/img/team-3.jpg" class="avatar avatar-sm me-3" alt="user4">
+                        <img src="/static/assets/img/team-3.jpg" class="avatar avatar-sm me-3" alt="user4">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-0 text-sm">Michael Levi</h6>
@@ -177,7 +336,7 @@
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div>
-                        <img src="{{ ASSETS_ROOT }}/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user5">
+                        <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user5">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-0 text-sm">Richard Gran</h6>
@@ -206,7 +365,7 @@
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div>
-                        <img src="{{ ASSETS_ROOT }}/img/team-4.jpg" class="avatar avatar-sm me-3" alt="user6">
+                        <img src="/static/assets/img/team-4.jpg" class="avatar avatar-sm me-3" alt="user6">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-0 text-sm">Miriam Eric</h6>
@@ -232,14 +391,14 @@
                   </td>
                 </tr>
               </tbody>
-            </table>
+            </table> -->
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
@@ -475,9 +634,8 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  {% include "includes/footer.html" %}
 
 </div>
 

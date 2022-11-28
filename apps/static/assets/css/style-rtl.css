@@ -528,7 +528,7 @@ button:focus {
 .content__button {
     position: absolute;
     /* top: -100%; */
-    top: -22em;
+    top: -20em;
     right: 0;
     -webkit-transition: opacity 0.3s 0.7s;
     transition: opacity 0.3s 0.7s;
