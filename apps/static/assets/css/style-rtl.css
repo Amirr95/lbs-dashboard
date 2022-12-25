@@ -173,10 +173,12 @@ button:focus {
     font-size: 2.5vmin;
     line-height: 0;
     position: absolute;
+    /* font-family: B Nazanin;
+    font-weight: 600; */
     z-index: 100;
     /* top: -2em; */
-    top: 0;
-    left: 3.5em;
+    top: -3rem;
+    left: 1.5em;
     white-space: nowrap;
     color: #7d7d86;
     -webkit-transform: rotateZ(45deg) rotateX(-70deg) translateZ(5vmin);
@@ -450,6 +452,14 @@ button:focus {
     height: auto;
 }
 
+.content--open .content__item2 {
+    -webkit-transition: none;
+    transition: none;
+    overflow: auto;
+    width: 73% !important;
+    height: auto;
+}
+
 .content__item--current {
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
@@ -521,18 +531,26 @@ button:focus {
 }
 
 .content__desc {
-    text-align: left;
+    text-align: center;
     margin: 7vmin 0 0 0;
 }
 
 .content__button {
     position: absolute;
     /* top: -100%; */
-    top: -20em;
-    right: 0;
+    top: -10em;
+    right: 0.3em;
     -webkit-transition: opacity 0.3s 0.7s;
     transition: opacity 0.3s 0.7s;
 }
+
+/* .content__button2 {
+    position: absolute;
+    top: -20em !important;
+    right: 0 !important;
+    -webkit-transition: opacity 0.3s 0.7s;
+    transition: opacity 0.3s 0.7s;
+} */
 
 .content__button--hidden {
     pointer-events: none;
@@ -650,25 +668,25 @@ button:focus {
 
 .grouped-by-category [data-category='1']:first-child::before,
 .grouped-by-category :not([data-category='1'])+[data-category='1']::before {
-    content: 'دسته اول';
+    content: 'تیم‌ها';
     color: #7cbf7f;
 }
 
 .grouped-by-category [data-category='2']:first-child::before,
 .grouped-by-category :not([data-category='2'])+[data-category='2']::before {
-    content: 'دسته دوم';
+    content: 'اتاق جلسات';
     color: #6584c7;
 }
 
 .grouped-by-category [data-category='3']:first-child::before,
 .grouped-by-category :not([data-category='3'])+[data-category='3']::before {
-    content: 'دسته سوم';
+    content: 'اتاق سرور';
     color: #dc4b7c;
 }
 
 .grouped-by-category [data-category='4']:first-child::before,
 .grouped-by-category :not([data-category='4'])+[data-category='4']::before {
-    content: 'دسته چهارم';
+    content: 'انبار';
     color: #8d65e0;
 }
 
@@ -838,7 +856,7 @@ button:focus {
 
 .pin--active .iconMall--pin {
     stroke: #515158;
-    stroke-width: 15px;
+    stroke-width: 1px;
 }
 
 .iconMall--pin {
@@ -847,6 +865,7 @@ button:focus {
 }
 
 .iconMall--logo {
+    visibility: hidden;
     position: absolute;
     top: 11%;
     left: 25%;
