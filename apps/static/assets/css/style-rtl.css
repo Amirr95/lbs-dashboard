@@ -856,7 +856,7 @@ button:focus {
 
 .pin--active .iconMall--pin {
     stroke: #515158;
-    stroke-width: 1px;
+    stroke-width: 15px;
 }
 
 .iconMall--pin {
