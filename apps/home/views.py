@@ -35,8 +35,8 @@ def pages(request):
         context['segment'] = load_template
 
         if load_template == 'get-device-location':
-            device_x = random.randint(0, 1000)
-            device_y = random.randint(0, 800)
+            device_x = random.randint(0, 15)
+            device_y = random.randint(0, 10)
             response = {
                 'x': device_x,
                 'y': device_y

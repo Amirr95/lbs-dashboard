@@ -149,6 +149,7 @@
     function initEvents() {
         hideTemp();
         // click on a Mall´s level
+        document.documentElement.style.setProperty('--transform', 'rotateX(70deg) rotateZ(-45deg) translateZ(-15vmin)')
         mallLevels.forEach(function (level, pos) {
             level.addEventListener('click', function () {
                 // shows this level
@@ -360,7 +361,8 @@
         if (isExpanded) {
             return false;
         }
-
+        document.documentElement.style.setProperty('--transform', '')
+        console.log('func reached!')
         // update selected level val
         selectedLevel = level;
         document.getElementById('defaultOpen').className += " active boxbutton--dark";
@@ -401,6 +403,7 @@
         }
         isExpanded = false;
         document.getElementById('spaces-list').style.visibility = 'visible';
+        document.documentElement.style.setProperty('--transform', 'rotateX(70deg) rotateZ(-45deg) translateZ(-15vmin)')
         OpenTab("area");
         classie.remove(mallLevels[selectedLevel - 1], 'level--current');
         classie.remove(mallLevelsEl, 'levels--selected-' + selectedLevel);

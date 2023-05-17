@@ -5,7 +5,7 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
 <link href="{{ ASSETS_ROOT }}/css/normalize-rtl.css" rel="stylesheet" />
-<link href="{{ ASSETS_ROOT }}/css/style-rtl.css?version=22" rel="stylesheet" />
+<link href="{{ ASSETS_ROOT }}/css/style-rtl.css" rel="stylesheet" />
 <script src="{{ ASSETS_ROOT }}/js/modernizr-custom.js"></script>
 {% endblock stylesheets %}
 
@@ -4423,11 +4423,66 @@
 {% block javascripts %}
 <script src="{{ ASSETS_ROOT }}/js/classie.js"></script>
 <script src="{{ ASSETS_ROOT }}/js/list.min.js"></script>
-<script src="{{ ASSETS_ROOT }}/js/main-floorplan3-without-classie.js?version=6"></script>
+<script src="{{ ASSETS_ROOT }}/js/main-floorplan3-without-classie.js"></script>
 <script src="{{ ASSETS_ROOT }}/js/plugins/chartjs.min.js"></script>
 <!-- ADDED THIS -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
+  // Function to update the device's location on the map
+function updateDeviceLocation() {
+  var mapDiv = $(".level__AreaPins--active")[0];
+  
+  // Check if the map div is visible
+  if (mapDiv.is(":visible")) {
+    $.ajax({
+      url: "/get_device_location/",
+      type: "GET",
+      dataType: "json",
+      success: function(response) {
+        var deviceX = response.x;
+        var deviceY = response.y;
+        console.log('hello from 1')
+        // Get the dimensions of the map div
+        var mapRect = mapDiv[0].getBoundingClientRect();
+        var mapWidth = mapRect.width;
+        var mapHeight = mapRect.height;
+
+        // Check if the device position falls within the map div
+        if (deviceX >= 0 && deviceX <= mapWidth && deviceY >= 0 && deviceY <= mapHeight) {
+          // Update the device icon position
+          var deviceIcon = $("#device-icon");
+          deviceIcon.css("left", deviceX + "px");
+          deviceIcon.css("top", deviceY + "px");
+        }
+      }
+    });
+  }
+}
+
+</script>
+
+<script>
+  function transformCoordinates(x, y, accessPoint1X, accessPoint1Y, accessPoint2X, accessPoint2Y, 
+                                accessPoint1PixelX, accessPoint1PixelY,
+                                accessPoint2PixelX, accessPoint2PixelY) {
+  // Calculate the differences between access point positions in meters
+  var deltaX = accessPoint2X - accessPoint1X;
+  var deltaY = accessPoint2Y - accessPoint1Y;
+  var deltaPixelX = accessPoint2PixelX - accessPoint1PixelX;
+  var deltaPixelY = accessPoint2PixelY - accessPoint1PixelY;
+
+  // Calculate the scaling factors for the x and y coordinates
+  var xScalingFactor = deltaPixelX / deltaX;
+  var yScalingFactor = deltaPixelY / deltaY;
+
+  // Calculate the transformed x and y coordinates
+  // accessPoint1 coordiantes is considered the origin
+  var transformedX = accessPoint1PixelX + (x - accessPoint1X) * xScalingFactor;
+  var transformedY = accessPoint1PixelY + (y - accessPoint1Y) * yScalingFactor;
+
+  return { x: transformedX, y: transformedY };
+  }
   // Function to update the device's location on the map
   function updateDeviceLocation() {
       $.ajax({
@@ -4435,16 +4490,53 @@
           type: "GET",
           dataType: "json",
           success: function(response) {
-              console.log("Response:", response); 
+            // var mapDiv = $(".level__AreaPins--active");
+              var mapDiv = $(".level.level--current");
+              console.log('hello from 2')
+              var mapRect = mapDiv[0].getBoundingClientRect();
+              var top = mapRect["top"];
+              var left = mapRect["left"];
+              var bottom = mapRect["bottom"];
+              var right = mapRect["right"];
+              var mapWidth = mapRect.width;
+              var mapHeight = mapRect.height;
               // Retrieve the device's coordinates from the response
               var deviceX = response.x;
               var deviceY = response.y;
 
+              var transformedCoords = transformCoordinates(x=deviceX,
+                                                           y=deviceY,
+                                                           accessPoint1X=2,
+                                                           accessPoint1Y=5,
+                                                           accessPoint2X=7,
+                                                           accessPoint2Y=0,
+                                                           accessPoint1PixelX=438,
+                                                           accessPoint1PixelY=325,
+                                                           accessPoint2PixelX=700,
+                                                           accessPoint2PixelY=136);
+              console.log(transformedCoords)
+
+              var deviceX = transformedCoords.x;
+              var deviceY = transformedCoords.y;
+
+              // console.log("x: ", deviceX, " y: ",deviceY);
+              // if (deviceX >= left && deviceX <= right && deviceY >= top && deviceY <= bottom) {
+              if (deviceX >= 0 && deviceX <= mapWidth && deviceY >= 0 && deviceY <= mapHeight) {
+                // Update the device icon position
+                console.log("x: ", deviceX, " y: ",deviceY);
+                console.log( "x should be between:", left, " and ", right)
+                console.log( "y should be between:", top, " and ", bottom)  
+                console.log( "width", mapWidth, " height ", mapHeight)
+                var deviceIcon = $("#device-icon");
+                deviceIcon.css("left", deviceX + "px");
+                deviceIcon.css("top", deviceY + "px");
+              }
               // Update the device icon's position on the map
-              var deviceIcon = $("#device-icon");
-              deviceIcon.css("top", deviceY + "px");
-              deviceIcon.css("left", deviceX + "px");
-          }
+              // var deviceIcon = $("#device-icon");
+              // deviceIcon.css("top", deviceY + "px");
+              // deviceIcon.css("left", deviceX + "px");
+              // Function to apply the map's transforms to the device icon's position
+              }
       });
   }
 

@@ -151,8 +151,10 @@ button:focus {
 
 .surroundings,
 .levels {
-    -webkit-transform: rotateX(70deg) rotateZ(-45deg) translateZ(-15vmin);
-    transform: rotateX(70deg) rotateZ(-45deg) translateZ(-15vmin);
+    /* -webkit-transform: rotateX(70deg) rotateZ(-45deg) translateZ(-15vmin);
+    transform: rotateX(70deg) rotateZ(-45deg) translateZ(-15vmin); */
+    -webkit-transform: var(--transform);
+    transform: var(--transform);
 }
 
 .level {
@@ -194,10 +196,10 @@ button:focus {
     color: #515158;
 }
 
-.level--current::after {
+/* .level--current::after {
     -webkit-transform: rotateZ(-20deg) rotateZ(45deg) rotateX(-70deg) translateZ(5vmin) translateX(5vmin) translateY(-10vmin);
     transform: rotateZ(-20deg) rotateZ(45deg) rotateX(-70deg) translateZ(5vmin) translateX(5vmin) translateY(-10vmin);
-}
+} */
 
 .level--1::after {
     content: 'طبقه 1';
@@ -295,10 +297,10 @@ button:focus {
 
 /* Current level */
 
+/* go to center */
 .level.level--current {
-    -webkit-transform: translateZ(15vmin) rotate3d(0, 0, 1, 20deg);
-    /* go to center */
-    transform: translateZ(15vmin) rotate3d(0, 0, 1, 20deg);
+    /* -webkit-transform: translateZ(15vmin); rotate3d(0, 0, 1, 20deg); */
+    transform: translateZ(15vmin);  /*rotate3d(0, 0, 1, 20deg); */
 }
 
 /* Navigation classes */
@@ -758,8 +760,8 @@ button:focus {
     height: 8.25vmin;
     margin: -8.25vmin 0 0 -2.25vmin;
     /* let the bottom tip be the reference point for individual coordinates */
-    -webkit-transform: rotateZ(-20deg) rotateZ(45deg) rotateX(-70deg);
-    transform: rotateZ(-20deg) rotateZ(45deg) rotateX(-70deg);
+    /* -webkit-transform: rotateZ(-20deg) rotateZ(45deg) rotateX(-70deg);
+    transform: rotateZ(-20deg) rotateZ(45deg) rotateX(-70deg); */
     -webkit-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
     -webkit-transform-style: preserve-3d;
