@@ -5,7 +5,7 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
 <link href="{{ ASSETS_ROOT }}/css/normalize-rtl.css" rel="stylesheet" />
-<link href="{{ ASSETS_ROOT }}/css/style-rtl.css?version=19" rel="stylesheet" />
+<link href="{{ ASSETS_ROOT }}/css/style-rtl.css?version=22" rel="stylesheet" />
 <script src="{{ ASSETS_ROOT }}/js/modernizr-custom.js"></script>
 {% endblock stylesheets %}
 
@@ -2093,7 +2093,7 @@
               </svg>
             </span>
           </a>
-          <a class="pin areaPin pin--4-5" data-category="4" data-space="4.05" href="#"
+          <a class="pin areaPin pin--4-5" id="device-icon" data-category="4" data-space="4.05" href="#"
             aria-label="Pin for Hot Tub Festival">
             <span class="pin__icon">
               <svg class="iconMall iconMall--pin">
@@ -4425,6 +4425,33 @@
 <script src="{{ ASSETS_ROOT }}/js/list.min.js"></script>
 <script src="{{ ASSETS_ROOT }}/js/main-floorplan3-without-classie.js?version=6"></script>
 <script src="{{ ASSETS_ROOT }}/js/plugins/chartjs.min.js"></script>
+<!-- ADDED THIS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  // Function to update the device's location on the map
+  function updateDeviceLocation() {
+      $.ajax({
+          url: "/get-device-location",  // URL to retrieve the device's coordinates dynamically
+          type: "GET",
+          dataType: "json",
+          success: function(response) {
+              console.log("Response:", response); 
+              // Retrieve the device's coordinates from the response
+              var deviceX = response.x;
+              var deviceY = response.y;
+
+              // Update the device icon's position on the map
+              var deviceIcon = $("#device-icon");
+              deviceIcon.css("top", deviceY + "px");
+              deviceIcon.css("left", deviceX + "px");
+          }
+      });
+  }
+
+  // Update the device's location every 5 seconds
+  setInterval(updateDeviceLocation, 1000);
+</script>
+<!-- TO THIS -->
 <script>
   var ctx_421 = document.getElementById("chart-bars-4-21").getContext("2d");
   var ctx_423 = document.getElementById("chart-bars-4-23").getContext("2d");
@@ -4949,77 +4976,6 @@
     },
   });
 
-  // new Chart(ctx_121, {
-  //   type: "bar",
-  //   data: {
-  //     labels: ["00:00", "03:00", "06:00", "09:00", "12:00", "15:00", "18:00", "21:00"],
-  //     datasets: [{
-  //       label: "دما",
-  //       tension: 0.4,
-  //       borderWidth: 0,
-  //       borderRadius: 4,
-  //       borderSkipped: false,
-  //       backgroundColor: "#fff",
-  //       data: [21.8, 22, 21.9, 22.4, 25.3, 24.5, 24, 22],
-  //       maxBarThickness: 6
-  //     },],
-  //   },
-  //   options: {
-  //     responsive: true,
-  //     maintainAspectRatio: false,
-  //     plugins: {
-  //       legend: {
-  //         display: false,
-  //       }
-  //     },
-  //     interaction: {
-  //       intersect: false,
-  //       mode: 'index',
-  //     },
-  //     scales: {
-  //       y: {
-  //         grid: {
-  //           drawBorder: false,
-  //           display: false,
-  //           drawOnChartArea: false,
-  //           drawTicks: false,
-  //         },
-  //         ticks: {
-  //           suggestedMin: 0,
-  //           suggestedMax: 30,
-  //           beginAtZero: true,
-  //           padding: 15,
-  //           font: {
-  //             size: 14,
-  //             family: "Open Sans",
-  //             style: 'normal',
-  //             lineHeight: 2
-  //           },
-  //           color: "#fff"
-  //         },
-  //       },
-  //       x: {
-  //         grid: {
-  //           drawBorder: false,
-  //           display: true,
-  //           drawOnChartArea: false,
-  //           drawTicks: false
-  //         },
-  //         ticks: {
-  //           display: true,
-  //           color: '#b2b9bf',
-  //           padding: 0,
-  //           font: {
-  //             size: 11,
-  //             family: "Open Sans",
-  //             style: 'normal',
-  //             lineHeight: 2
-  //           },
-  //         },
-  //       },
-  //     },
-  //   },
-  // });
 
   var gradientStroke1 = ctx_122.createLinearGradient(0, 230, 0, 50);
 
@@ -5259,132 +5215,7 @@
     },
   });
 
-  // new Chart(ctx_122, {
-  //   type: "bar",
-  //   data: {
-  //     labels: ["00:00", "03:00", "06:00", "09:00", "12:00", "15:00", "18:00", "21:00"],
-  //     datasets: [{
-  //       label: "دما",
-  //       tension: 0.4,
-  //       borderWidth: 0,
-  //       borderRadius: 4,
-  //       borderSkipped: false,
-  //       backgroundColor: "#fff",
-  //       data: [21.4, 22.3, 21.9, 22.4, 25.3, 24.5, 24, 22],
-  //       maxBarThickness: 6
-  //     },],
-  //   },
-  //   options: {
-  //     responsive: true,
-  //     maintainAspectRatio: false,
-  //     plugins: {
-  //       legend: {
-  //         display: false,
-  //       }
-  //     },
-  //     interaction: {
-  //       intersect: false,
-  //       mode: 'index',
-  //     },
-  //     scales: {
-  //       y: {
-  //         grid: {
-  //           drawBorder: false,
-  //           display: false,
-  //           drawOnChartArea: false,
-  //           drawTicks: false,
-  //         },
-  //         ticks: {
-  //           suggestedMin: 0,
-  //           suggestedMax: 30,
-  //           beginAtZero: true,
-  //           padding: 15,
-  //           font: {
-  //             size: 14,
-  //             family: "Open Sans",
-  //             style: 'normal',
-  //             lineHeight: 2
-  //           },
-  //           color: "#fff"
-  //         },
-  //       },
-  //       x: {
-  //         grid: {
-  //           drawBorder: false,
-  //           display: false,
-  //           drawOnChartArea: false,
-  //           drawTicks: false
-  //         },
-  //         ticks: {
-  //           display: false
-  //         },
-  //       },
-  //     },
-  //   },
-  // });
-  // new Chart(ctx_123, {
-  //   type: "bar",
-  //   data: {
-  //     labels: ["00:00", "03:00", "06:00", "09:00", "12:00", "15:00", "18:00", "21:00"],
-  //     datasets: [{
-  //       label: "دما",
-  //       tension: 0.4,
-  //       borderWidth: 0,
-  //       borderRadius: 4,
-  //       borderSkipped: false,
-  //       backgroundColor: "#fff",
-  //       data: [21, 22.1, 21.7, 22.4, 25.6, 24.1, 24.4, 22.9],
-  //       maxBarThickness: 6
-  //     },],
-  //   },
-  //   options: {
-  //     responsive: true,
-  //     maintainAspectRatio: false,
-  //     plugins: {
-  //       legend: {
-  //         display: false,
-  //       }
-  //     },
-  //     interaction: {
-  //       intersect: false,
-  //       mode: 'index',
-  //     },
-  //     scales: {
-  //       y: {
-  //         grid: {
-  //           drawBorder: false,
-  //           display: false,
-  //           drawOnChartArea: false,
-  //           drawTicks: false,
-  //         },
-  //         ticks: {
-  //           suggestedMin: 0,
-  //           suggestedMax: 30,
-  //           beginAtZero: true,
-  //           padding: 15,
-  //           font: {
-  //             size: 14,
-  //             family: "Open Sans",
-  //             style: 'normal',
-  //             lineHeight: 2
-  //           },
-  //           color: "#fff"
-  //         },
-  //       },
-  //       x: {
-  //         grid: {
-  //           drawBorder: false,
-  //           display: false,
-  //           drawOnChartArea: false,
-  //           drawTicks: false
-  //         },
-  //         ticks: {
-  //           display: false
-  //         },
-  //       },
-  //     },
-  //   },
-  // });
+
   new Chart(ctx_124, {
     type: "bar",
     data: {

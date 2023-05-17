@@ -764,6 +764,8 @@ button:focus {
     transform-origin: 50% 100%;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
+    transition: top 0.5s ease, left 0.5s ease;
+
 }
 
 .pin__icon {

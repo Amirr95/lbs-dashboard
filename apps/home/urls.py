@@ -10,6 +10,7 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
+    # path('get-device-location/', views.get_device_location, name='get_device_location'),
 
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),

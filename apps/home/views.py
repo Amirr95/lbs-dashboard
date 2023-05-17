@@ -9,6 +9,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 
+import random
+from django.http import JsonResponse
+
 
 @login_required(login_url="/login/")
 def index(request):
@@ -31,8 +34,17 @@ def pages(request):
             return HttpResponseRedirect(reverse('admin:index'))
         context['segment'] = load_template
 
-        html_template = loader.get_template('home/' + load_template)
-        return HttpResponse(html_template.render(context, request))
+        if load_template == 'get-device-location':
+            device_x = random.randint(0, 1000)
+            device_y = random.randint(0, 800)
+            response = {
+                'x': device_x,
+                'y': device_y
+            }
+            return JsonResponse(response)
+        else:
+            html_template = loader.get_template('home/' + load_template)
+            return HttpResponse(html_template.render(context, request))
 
     except template.TemplateDoesNotExist:
 
